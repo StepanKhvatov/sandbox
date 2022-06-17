@@ -7,7 +7,14 @@ export class ExchangeConnector {
   }
 
   async fetchApi({ url, method, headers }) {
-    return fetch(url, { method, headers }).then((res) => {
+    return fetch(url, {
+      method,
+      headers: {
+        ...headers,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+      },
+    }).then((res) => {
       return res.json();
     });
   }
